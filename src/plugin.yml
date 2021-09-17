@@ -1,0 +1,7 @@
+name: LinuxCmds
+main: com.davi.linuxcmds.linuxcmds
+version: 1.0.0
+commands:
+  run:
+    description: Run the desired linux command
+    usage: /run [command]

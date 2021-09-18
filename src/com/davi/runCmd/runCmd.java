@@ -1,11 +1,11 @@
-package com.davi.linuxcmds;
+package com.davi.runCmd;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class linuxcmds extends JavaPlugin {
+public class runCmd extends JavaPlugin {
     @Override
     public void onEnable() {
-        this.getCommand("run").setExecutor(new ComandoRun());
+        this.getCommand("run").setExecutor(new CommandRun());
     }
 
     @Override

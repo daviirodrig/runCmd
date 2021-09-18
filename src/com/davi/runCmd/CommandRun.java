@@ -1,4 +1,4 @@
-package com.davi.linuxcmds;
+package com.davi.runCmd;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class ComandoRun implements CommandExecutor {
+public class CommandRun implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if (args.length < 1) {

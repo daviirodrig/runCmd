@@ -32,7 +32,7 @@ public class CommandRun implements CommandExecutor {
             }
 
             int exitCode = process.waitFor();
-            commandSender.sendMessage("\nExited with error code : " + exitCode);
+            commandSender.sendMessage("\nExited with code: " + exitCode);
             return true;
 
         } catch (IOException | InterruptedException e) {

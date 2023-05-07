@@ -23,21 +23,24 @@ public class CommandRun implements CommandExecutor {
         } else {
             processBuilder.command("sh", "-c", cmd);
         }
-        try {
-            Process process = processBuilder.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                commandSender.sendMessage(line);
+
+        new Thread(() -> {
+            try {
+                Process process = processBuilder.redirectErrorStream(true).start();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    commandSender.sendMessage(line);
+                }
+
+                int exitCode = process.waitFor();
+                commandSender.sendMessage("\nExited with code: " + exitCode);
+                // return true;
+
+            } catch (IOException | InterruptedException e) {
+                commandSender.sendMessage(e.toString());
             }
-
-            int exitCode = process.waitFor();
-            commandSender.sendMessage("\nExited with code: " + exitCode);
-            return true;
-
-        } catch (IOException | InterruptedException e) {
-            commandSender.sendMessage(e.toString());
-        }
+        }).start();
 
         return true;
     }
